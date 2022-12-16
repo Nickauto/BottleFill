@@ -6,6 +6,7 @@ program main
   type(Bottle_t) :: bottle
   type(Bottle_t) :: bottle2
   type(reservoir_t) :: reservoir
+  type(reservoir_t) :: reservoir2
 
     !Reservoir Conditions
   real :: P_0 = 5000000.0  !Pa
@@ -16,11 +17,13 @@ program main
   real :: Ru = 8314.0     !J/kmol
 
   reservoir = Reservoir_t(P_0, T_0, mw, gamma, d_orifice, Ru)
+  reservoir2 = Reservoir_t(P_0, T_0, mw, gamma, 0.01, Ru)
   bottle = Bottle_t(1.0)
   bottle2 = Bottle_t(1.3435)
   print *, bottle%to_string()
   print *, bottle2%to_string()
   print *, reservoir%to_string()
+  print *, reservoir2%to_string()
   !call Fill()
   !Test
 end program main
