@@ -1,5 +1,6 @@
-.\src\BottleFill.f90:32:16:
+.\src\BottleFill.f90:64:9:
 
-   32 |   real :: heat_A = (3.0*volume) / radius
-      |                1
-Warning: Unused PRIVATE module variable 'heat_a' declared at (1) [-Wunused-value]
+   64 |         c = sqrt(gamma * (Ru/mw) * T_static)
+      |         1
+Error: Symbol 'c' at (1) has no IMPLICIT type
+compilation terminated due to -fmax-errors=1.

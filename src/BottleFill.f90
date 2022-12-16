@@ -2,7 +2,7 @@ module BottleFill
   implicit none
   private
 
-  !Resevoir Conditions
+  !Reservoir Conditions
   real, parameter :: P_0 = 5000000.0  !Pa
   real, parameter :: T_0 = 300.0      !K
   real, parameter :: mw = 40.0       !kg/kmol
@@ -16,20 +16,10 @@ module BottleFill
   real, parameter :: Cv = Cp - (Ru/mw)
 
 
-  real :: test = 3.14159265 / 2
-  !Bottle Conditions
-  real, parameter :: volume = 1     !m^3
-  real, parameter :: radius = ((3.0 / (4.0*3.1415)) * volume) ** (1.0/3.0)
-  real :: m = 0
-  real :: E = 0
-  real :: P_b = 0
-  real :: T_b = 0
-  real :: rho_b = 0
-  real :: c
-  real :: T_static
+
 
   !Heat Transfer Variables
-  real :: heat_A = (3.0*volume) / radius
+  !real :: heat_A = (3.0*volume) / radius
   real :: dQ = 0
   real, parameter :: h = 10  !W/m^2-K
   real, parameter :: T_Wall = 300
@@ -54,7 +44,7 @@ contains
   subroutine Fill()
     ! Set Initial Bottle Conditions
     output(1,:) = [0.0, 0.0, T_0, 0.0, 0.0, 0.0]
-    print *, test
+
     do i = 2, timesteps
       if ((P_b/P_0) < Pcrit) then 
         cstar = sqrt((1.0/gamma)*(((gamma + 1.0)/2.0)**((gamma+1.0)/(gamma-1.0)))*Ru*(T_0/mw))
