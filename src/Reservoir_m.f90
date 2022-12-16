@@ -34,7 +34,7 @@ module reservoir_m
     interface
         pure module function to_string(self) result(string)
             class(reservoir_t), intent(in) :: self
-            character(len=200) :: string
+            character(len=250) :: string
         end function
    end interface    
 end module

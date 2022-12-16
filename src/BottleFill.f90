@@ -25,8 +25,6 @@ module BottleFill
   real, parameter :: T_Wall = 300
 
   !Other Program Variables
-  real :: cstar
-  real :: mdot_Choked
   real :: mdot_unchoked
   real :: Mach
   real :: mdot
@@ -47,8 +45,7 @@ contains
 
     do i = 2, timesteps
       if ((P_b/P_0) < Pcrit) then 
-        cstar = sqrt((1.0/gamma)*(((gamma + 1.0)/2.0)**((gamma+1.0)/(gamma-1.0)))*Ru*(T_0/mw))
-        mdot_Choked = (P_0*A) / cstar
+
 
         mdot = mdot_Choked
       else

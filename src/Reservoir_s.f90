@@ -24,16 +24,18 @@ contains
 
     pure function to_string(self) result(string)
         class(reservoir_t), intent(in) :: self
-        character(len=200) :: string
+        character(len=250) :: string
 
         write(string,1) new_line("C"), self%P_0/10**6, &
             new_line("C"), self%d_orifice*1000, &
             new_line("C"), self%c_star, &
-            new_line("C"), self%mdot_choked
+            new_line("C"), self%mdot_choked, &
+            new_line("C"), self%T_0
         1 format("Resevoir_t: ", A1,&
             "   P_0 (MPa)          = ", f10.2, A1, &
-            "   d_orifice (mm^2)   = ", f10.2, A1, &
+            "   d_orifice (mm)     = ", f10.2, A1, &
             "   c_star             = ", f10.2, A1, &
-            "   mdot_choked (kg/s) = ", f10.2)
+            "   mdot_choked (kg/s) = ", f10.2, A1, &
+            "   T_0 (K)            = ", f10.2)
     end function   
 end submodule
