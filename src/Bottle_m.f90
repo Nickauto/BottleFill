@@ -20,30 +20,18 @@ module bottle_m
     end type
 
     interface Bottle_t
-        module procedure constructor
+        pure module function constructor(volume) result(Bottle)
+            real, intent(in) :: volume
+            type(Bottle_t) :: Bottle
+        end function 
     end interface
 
-
-contains
-    pure function constructor(volume) result(Bottle)
-        real, intent(in) :: volume
-        type(Bottle_t) :: Bottle
-        real :: radius_
-
-        radius_ = ((3.0 / (4.0*3.1415)) * volume) ** (1.0/3.0)
-        Bottle%volume = volume 
-        Bottle%radius = radius_
-    end function
-
-    pure function to_string(self) result(string)
-        class(Bottle_t), intent(in) :: self
-        character(len=150) :: string
+    interface
+        pure module function to_string(self) result(string)
+            class(Bottle_t), intent(in) :: self
+            character(len=150) :: string
+        end function
         
-        write(string,1) new_line("C"), self%volume, new_line("C"),self%radius
-        1 format("Bottle_t: ", A1,&
-            "   Volume = ", f10.2, A1,&
-            "   Radius = ", f10.2)
-    end function
-
-
+    end interface
 end module
+

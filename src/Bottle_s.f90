@@ -1,14 +1,12 @@
 submodule(Bottle_m) Bottle_s
 contains
-    pure function constructor(volume) result(Bottle)
-        real, intent(in) :: volume
-        type(Bottle_t) :: Bottle
+    module procedure constructor
         real :: radius_
 
         radius_ = ((3.0 / (4.0*3.1415)) * volume) ** (1.0/3.0)
         Bottle%volume = volume 
         Bottle%radius = radius_
-    end function
+    end procedure
 
     pure function to_string(self) result(string)
         class(Bottle_t), intent(in) :: self
