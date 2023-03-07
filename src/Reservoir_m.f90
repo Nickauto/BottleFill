@@ -3,12 +3,16 @@ module reservoir_m
     private
 
     public reservoir_t
+    public test_t
+
+    type test_t
+        real :: test_v
+    end type
 
     type reservoir_t
-        private
         !Reservoir Conditions
-        real :: P_0 
-        real :: T_0 
+        real,public :: P_0
+        real :: T_0
         real :: mw 
         real :: gamma 
         real :: d_orifice 
@@ -22,6 +26,8 @@ module reservoir_m
         real :: mdot_choked
     contains
         procedure, public :: to_string
+        procedure, public :: get_P_0
+        
     end type
 
     interface reservoir_t
@@ -37,5 +43,21 @@ module reservoir_m
             character(len=250) :: string
         end function
    end interface    
+
+
+contains
+    pure function get_P_0(self) result(P_0)
+        class(reservoir_t), intent(in) :: self
+        real :: P_0
+        P_0 = self%P_0
+    end function
+
+    pure function get_Pcrit(self) result(Pcrit)
+        class(reservoir_t), intent(in) :: self
+        real :: Pcrit
+        Pcrit = self%Pcrit
+    end function
+
+
 end module
 

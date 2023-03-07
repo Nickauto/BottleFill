@@ -6,6 +6,10 @@ contains
         radius_ = ((3.0 / (4.0*3.1415)) * volume) ** (1.0/3.0)
         Bottle%volume = volume 
         Bottle%radius = radius_
+        Bottle%chamber_id = chamber_id
+        Bottle%gas = gas
+        Bottle%P_b = P_0
+        Bottle%T_b = T_0
     end procedure
 
     pure function to_string(self) result(string)

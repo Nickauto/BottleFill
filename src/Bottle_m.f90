@@ -1,12 +1,15 @@
 module bottle_m
+    use gas_m, only: gas_t
     implicit none
     private
 
+   
     public Bottle_t
 
     type Bottle_t
-        private
         real :: volume
+        integer :: chamber_id
+        type(gas_t) :: gas
         real :: radius
         real :: m = 0
         real :: E = 0
@@ -20,8 +23,10 @@ module bottle_m
     end type
 
     interface Bottle_t
-        pure module function constructor(volume) result(Bottle)
-            real, intent(in) :: volume
+        pure module function constructor(volume, P_0, T_0, gas, chamber_id) result(Bottle)
+            real, intent(in) :: volume, P_0, T_0
+            type(gas_t), intent(in) :: gas
+            integer, intent(in) :: chamber_id
             type(Bottle_t) :: Bottle
         end function 
     end interface
@@ -33,5 +38,7 @@ module bottle_m
         end function
         
     end interface
+
+ 
 end module
 
